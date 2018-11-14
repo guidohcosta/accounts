@@ -6,4 +6,5 @@ class Account < ApplicationRecord
   validates :creation, presence: true
 
   belongs_to :person, polymorphic: true
+  belongs_to :accountable, polymorphic: true
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_025959) do
+ActiveRecord::Schema.define(version: 2018_11_14_204554) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "balance"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 2018_11_14_025959) do
     t.datetime "updated_at", null: false
     t.integer "person_id"
     t.string "person_type"
+    t.string "accountable_type"
+    t.bigint "accountable_id"
+    t.index ["accountable_type", "accountable_id"], name: "index_accounts_on_accountable_type_and_accountable_id"
     t.index ["person_type", "person_id"], name: "index_accounts_on_person_type_and_person_id"
   end
 

@@ -8,5 +8,6 @@ RSpec.describe Branch, type: :model do
 
   describe '#associations' do
     it { is_expected.to have_one(:branch).dependent :destroy }
+    it { is_expected.to have_one(:account).dependent :destroy }
   end
 end
