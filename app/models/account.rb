@@ -4,4 +4,6 @@ class Account < ApplicationRecord
     presence: true,
     numericality: true
   validates :creation, presence: true
+
+  belongs_to :person, polymorphic: true
 end
