@@ -1,5 +1,5 @@
 class TransferService
-  attr_accessor :response, :from, :to, :balance
+  attr_accessor :response, :from, :to, :amount
 
   def self.call(params)
     new(params).call
@@ -15,15 +15,15 @@ class TransferService
   def initialize(params)
     @from = params[:from]
     @to = params[:to]
-    @balance = params[:balance]
+    @amount = params[:amount]
   end
 
   private
 
   def transfer
     ActiveRecord::Base.transaction do
-      @from.account.balance -= @balance
-      @to.account.balance += @balance
+      @from.account.balance -= @amount
+      @to.account.balance += @amount
 
       @from.save
       @to.save

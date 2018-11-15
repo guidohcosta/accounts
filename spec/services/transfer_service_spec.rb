@@ -5,11 +5,10 @@ RSpec.describe TransferService do
     {
       from: from,
       to: to,
-      balance: 2000
+      amount: 2000
     }
   end
 
-  let(:response) { TransferService.call(params) }
   let(:head) { create(:head, account: build(:account)) }
   let(:to) do
     create(:branch, parent: head, head: head, account: build(:account))

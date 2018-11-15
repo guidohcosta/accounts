@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_204554) do
+ActiveRecord::Schema.define(version: 2018_11_15_015855) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "balance"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 2018_11_14_204554) do
     t.index ["head_id"], name: "index_branches_on_head_id"
   end
 
+  create_table "contributions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "code"
+    t.bigint "head_id"
+    t.integer "amount"
+    t.boolean "reversed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_contributions_on_code", unique: true
+    t.index ["head_id"], name: "index_contributions_on_head_id"
+  end
+
   create_table "heads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -57,4 +68,5 @@ ActiveRecord::Schema.define(version: 2018_11_14_204554) do
   end
 
   add_foreign_key "branches", "heads"
+  add_foreign_key "contributions", "heads"
 end
