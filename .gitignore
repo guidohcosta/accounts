@@ -25,3 +25,6 @@
 # Ignore vim temporary files
 *.sw?
 Session.vim
+
+# Ignore local environment variables
+/config/local_env.yml
