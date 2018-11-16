@@ -6,10 +6,9 @@ class TransferService
   end
 
   def call
-    unless valid_tree?
-      raise ArgumentError, 'Accounts should belong to the same tree'
-    end
+    return response unless valid_tree?
     transfer
+    response
   end
 
   def initialize(params)
@@ -19,6 +18,16 @@ class TransferService
   end
 
   private
+
+  def response
+    {
+      status: status
+    }
+  end
+
+  def status
+    valid_tree? ? :success : :failure
+  end
 
   def transfer
     ActiveRecord::Base.transaction do

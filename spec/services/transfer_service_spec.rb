@@ -67,9 +67,8 @@ RSpec.describe TransferService do
     end
 
     it 'raises an error' do
-      expect do
-        ::TransferService.call(params)
-      end.to raise_error ArgumentError
+      response = ::TransferService.call(params)
+      expect(response[:status]).to eq :failure
     end
   end
 end

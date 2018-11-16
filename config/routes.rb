@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :legal_person_branchs, only: %i[create update]
     resources :natural_person_heads, only: %i[create update]
     resources :natural_person_branchs, only: %i[create update]
-    get :contributions, to: 'contributions#fetch_api'
+    resources :transfers, only: %i[create index destroy]
+    post :contributions, to: 'contributions#fetch_api'
   end
 end

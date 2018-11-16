@@ -18,7 +18,7 @@ RSpec.describe V1::ContributionsController, type: :controller do
 
       it 'return success status and code' do
         expect(::ContributionService).to receive(:call)
-        get :fetch_api, params: { head_id: head.id, amount: 20000 }
+        post :fetch_api, params: { head_id: head.id, amount: 20000 }
         expect(response.status).to eq 200
         expect(response.body).to be_a_kind_of(String)
       end
@@ -31,7 +31,7 @@ RSpec.describe V1::ContributionsController, type: :controller do
 
       it 'return success status' do
         expect(::ContributionService).to receive(:call)
-        get :fetch_api, params: { head_id: head.id, amount: 20000 }
+        post :fetch_api, params: { head_id: head.id, amount: 20000 }
         expect(response.status).to eq 204
       end
     end
