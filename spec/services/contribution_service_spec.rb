@@ -10,9 +10,9 @@ RSpec.describe ContributionService do
   end
 
   it 'returns the contribution code' do
-    expect(
-      ::ContributionService.call(params)
-    ).to be_a_kind_of(String)
+    response = ::ContributionService.call(params)
+    expect(response[:status]).to eq :success
+    expect(response[:body]).to be_a_kind_of(String)
   end
 
   it 'increases balance' do

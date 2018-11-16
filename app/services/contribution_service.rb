@@ -7,7 +7,7 @@ class ContributionService
 
   def call
     contribute
-    @contribution.code
+    respond
   end
 
   def initialize(params)
@@ -16,6 +16,17 @@ class ContributionService
   end
 
   private
+
+  def respond
+    {
+      status: status,
+      body: @contribution.code
+    }
+  end
+
+  def status
+    @contribution.valid? ? :success : :failure
+  end
 
   def contribute
     ActiveRecord::Base.transaction do

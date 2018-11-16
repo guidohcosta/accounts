@@ -9,6 +9,10 @@ RSpec.describe Head, type: :model do
     it { is_expected.to have_one(:account).dependent :destroy }
   end
 
+  describe '#validation' do
+    it { is_expected.to validate_presence_of :account }
+  end
+
   describe 'methods' do
     let(:head) { create(:head, account: build(:account)) }
     describe '#head_id' do

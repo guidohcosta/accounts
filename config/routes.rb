@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :v1 do
+    resources :legal_person_heads, only: %i[create update]
+    resources :legal_person_branchs, only: %i[create update]
+    resources :natural_person_heads, only: %i[create update]
+    resources :natural_person_branchs, only: %i[create update]
+    get :contributions, to: 'contributions#fetch_api'
+  end
 end
