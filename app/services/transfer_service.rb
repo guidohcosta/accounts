@@ -24,7 +24,7 @@ class TransferService
     ActiveRecord::Base.transaction do
       @from.account.balance -= @amount
       @to.account.balance += @amount
-
+      create_transfer
       @from.save
       @to.save
     end
@@ -32,5 +32,14 @@ class TransferService
 
   def valid_tree?
     @from.head_id == @to.head_id
+  end
+
+  def create_transfer
+    Transfer.create(
+      from: @from,
+      to: @to,
+      amount: @amount,
+      reversed: false
+    )
   end
 end

@@ -28,6 +28,12 @@ RSpec.describe TransferService do
         ::TransferService.call(params)
       end.to change(to.account, :balance).by(2000)
     end
+
+    it 'creates a transfer' do
+      expect do
+        ::TransferService.call(params)
+      end.to change(Transfer, :count).by(1)
+    end
   end
 
   context 'when branch is the origin' do
@@ -45,6 +51,12 @@ RSpec.describe TransferService do
       expect do
         ::TransferService.call(params)
       end.to change(to.account, :balance).by(2000)
+    end
+
+    it 'creates a transfer' do
+      expect do
+        ::TransferService.call(params)
+      end.to change(Transfer, :count).by(1)
     end
   end
 
