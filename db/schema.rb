@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_015855) do
+ActiveRecord::Schema.define(version: 2018_11_15_112622) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "balance"
@@ -65,6 +65,17 @@ ActiveRecord::Schema.define(version: 2018_11_15_015855) do
     t.date "birthdate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transfers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "from_type"
+    t.bigint "from_id"
+    t.integer "to"
+    t.integer "amount"
+    t.boolean "reversed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_type", "from_id"], name: "index_transfers_on_from_type_and_from_id"
   end
 
   add_foreign_key "branches", "heads"

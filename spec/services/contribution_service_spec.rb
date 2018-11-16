@@ -20,4 +20,10 @@ RSpec.describe ContributionService do
       ::ContributionService.call(params)
     end.to change(head.account, :balance).by(30000)
   end
+
+  it 'creates a contribution' do
+    expect do
+      ::ContributionService.call(params)
+    end.to change(Contribution, :count).by(1)
+  end
 end
